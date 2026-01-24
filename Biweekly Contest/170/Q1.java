@@ -1,25 +1,25 @@
-class Solution {
-    public int minimumFlips(int n) {
+public int minFlips(int n) {
 
-        // Convert number to binary string (no leading zeros)
-        String s = Integer.toBinaryString(n);
+    // Step 1: Convert the integer n into its binary representation
+    // (without leading zeros)
+    String s = Integer.toBinaryString(n);
 
-        int i = 0, j = s.length() - 1;
-        int count = 0;
+    // Step 2: Initialize a counter to track the number of flips required
+    int flips = 0;
 
-        // Compare symmetric characters
-        while (i < j) {
+    // Step 3: Get the length of the binary string
+    int len = s.length();
 
-            // If bits are different, both need flipping
-            if (s.charAt(i) != s.charAt(j)) {
-                count++;
-            }
+    // Step 4: Compare each bit with its corresponding bit in the reversed string
+    // Bit at index i should match the bit at index (len - 1 - i)
+    for (int i = 0; i < len; i++) {
 
-            i++;
-            j--;
+        // If the bits do not match, one flip is required
+        if (s.charAt(i) != s.charAt(len - 1 - i)) {
+            flips++;
         }
-
-        // Each mismatch requires 2 flips
-        return count * 2;
     }
+
+    // Step 5: Return the minimum number of flips needed
+    return flips;
 }
