@@ -1,38 +1,23 @@
 class Solution {
-    public int absDifference(int[] nums, int k) {
-
-        int n = nums.length;
-
-        // ------------------------------------------------
+    public int minMaxDifference(int[] nums, int k) {
         // Step 1: Sort the array
-        // After sorting:
-        // - Smallest elements are on the left
-        // - Largest elements are on the right
-        // ------------------------------------------------
         Arrays.sort(nums);
 
-        int smalsum = 0;  // sum of k smallest elements
-        int larsum = 0;  // sum of k largest elements
+        int minSum = 0;
+        int maxSum = 0;
+        int n = nums.length;
 
-        int l = 0;       // left pointer (smallest values)
-        int r = n - 1;   // right pointer (largest values)
-
-        // ------------------------------------------------
-        // Step 2: Two-pointer approach
-        // Pick k smallest from left
-        // Pick k largest from right
-        //
-        // Pattern:
-        // Sorting + Two Pointers
-        // ------------------------------------------------
-        while (l < k) {
-            smalsum += nums[l++];   // take smallest
-            larsum += nums[r--];   // take largest
+        // Step 2: Sum k smallest elements
+        for (int i = 0; i < k; i++) {
+            minSum += nums[i];
         }
 
-        // ------------------------------------------------
-        // Step 3: Return absolute difference
-        // ------------------------------------------------
-        return Math.abs(larsum - smalsum);
+        // Step 3: Sum k largest elements
+        for (int i = n - k; i < n; i++) {
+            maxSum += nums[i];
+        }
+
+        // Step 4: Return absolute difference
+        return Math.abs(maxSum - minSum);
     }
 }
